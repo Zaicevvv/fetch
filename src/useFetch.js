@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios'
 
-function useFetch(url, foo) {
+function useFetch(initialUrl, foo) {
+const [url, setUrl] = useState(initialUrl)  
 const [data, setData] = useState(null);
 const [error, setError] = useState(null);
 const isMounted = useRef(false)
@@ -25,7 +26,7 @@ useEffect(() => {
  
 },[url, foo]);
 
-  return { data, error }
+  return { data, error, setUrl }
 };
 
 export default useFetch;
